@@ -7,9 +7,15 @@ class TestBowlingGame(TestCase):
         self.game = BowlingGame()
 
     def test_gutter_game(self):
-        for i in range (20):
-            self.game.roll(0)
+        self.roll_many(20,0)
+        self.assertEqual(0, self.game.score(), "test_gutter_game failed")
 
-        self.assertEqual(0, self.game.score())
+    def test_roll_all_ones(self):
+        self.roll_many(20,1)
+        self.assertEqual(20, self.game.score(), "test_roll_all_ones failed")
+
+    def roll_many(self, number_of_rolls, pins):
+        for i in range(number_of_rolls):
+            self.game.roll(pins)
 
 
