@@ -14,6 +14,9 @@ class TestBowlingGame(TestCase):
         self.game.roll(5)
         self.game.roll(5)
 
+    def roll_strike(self):
+        self.game.roll(10)
+
     def test_gutter_game(self):
         self.roll_many(20,0)
         self.assertEqual(0, self.game.score(), "test_gutter_game failed")
@@ -28,12 +31,12 @@ class TestBowlingGame(TestCase):
         self.roll_many(17,0)
         self.assertEqual(16,self.game.score(), "test_one_spare failed")
 
-    # def test_one_strike(self):
-    #     self.game.roll(10)
-    #     self.game.roll(3)
-    #     self.game.roll(4)
-    #     self.roll_many(17,0)
-    #     self.assertEqual(24, self.game.score(), "test_one_strike failed")
+    def test_one_strike(self):
+         self.roll_strike()
+         self.game.roll(3)
+         self.game.roll(4)
+         self.roll_many(17,0)
+         self.assertEqual(24, self.game.score(), "test_one_strike failed")
 
 
 

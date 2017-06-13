@@ -10,7 +10,8 @@ class BowlingGame:
     def score(self):
         score = 0
         frame_index = 0
-        while frame_index < len(self.rolls):
+        frame = 0
+        while frame < 10:
             if (self.is_strike(frame_index)):
                 score += 10 + self.strike_bonus(frame_index)
                 frame_index += 1
@@ -20,6 +21,8 @@ class BowlingGame:
             else:
                 score += self.sum_of_pins_in_frame(frame_index)
                 frame_index += 2
+
+            frame += 1
 
         return score
 
