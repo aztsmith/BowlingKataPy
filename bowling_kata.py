@@ -12,13 +12,13 @@ class BowlingGame:
         frame_index = 0
         while frame_index < len(self.rolls):
             if (self.is_strike(frame_index)):
-                score += 10 + self.rolls[frame_index +1] + self.rolls[frame_index+2]
+                score += 10 + self.strike_bonus(frame_index)
                 frame_index += 1
             elif (self.is_spare(frame_index)):
-                score += 10 + self.rolls[frame_index+2]
+                score += 10 + self.spare_bonus(frame_index)
                 frame_index += 2
             else:
-                score += self.rolls[frame_index] + self.rolls[frame_index+1]
+                score += self.sum_of_pins_in_frame(frame_index)
                 frame_index += 2
 
         return score
@@ -28,6 +28,15 @@ class BowlingGame:
 
     def is_strike(self, frame_index):
         return self.rolls[frame_index] == 10
+
+    def sum_of_pins_in_frame(self, frame_index):
+        return self.rolls[frame_index] + self.rolls[frame_index +1]
+
+    def spare_bonus(self, frame_index):
+        return self.rolls[frame_index +2]
+
+    def strike_bonus(self, frame_index):
+        return self.rolls[frame_index +1] + self.rolls[frame_index+2]
 
 
 
